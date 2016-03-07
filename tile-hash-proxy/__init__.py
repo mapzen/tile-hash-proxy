@@ -38,7 +38,12 @@ class Handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         if 'access-control-allow-origin' not in res.headers:
             self.send_header('access-control-allow-origin', '*')
         self.end_headers()
-        self.wfile.write(res.text)
+
+        kilobyte = 1024 * 1000
+        chunk_size = 1 * kilobyte
+        for chunk in res.iter_content(chunk_size):
+            self.wfile.write(chunk)
+
         self.wfile.close()
 
 
