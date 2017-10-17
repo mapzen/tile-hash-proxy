@@ -30,7 +30,7 @@ class Handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
     def do_GET(self):
         query_params = self.path.split('?')
-        old_path = query_params.pop()
+        old_path = query_params[0]
         md5_hash = calc_hash(old_path)
         new_path = '%(date)s/%(md5)s%(path)s' % dict(
             date=date_prefix,
