@@ -50,7 +50,7 @@ class Handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         self.end_headers()
 
         kilobyte = 1024 * 1000
-        chunk_size = 1 * kilobyte
+        chunk_size = 16 * kilobyte
         for chunk in res.iter_content(chunk_size):
             self.wfile.write(chunk)
 
